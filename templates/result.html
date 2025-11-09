@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detection Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Detection Result</h1>
+
+      <div class="image-wrap">
+        <img src="{{ output_image }}" alt="output" />
+      </div>
+
+      <h3>Recognized Texts</h3>
+      <ul>
+        {% for item in texts %}
+        <li><strong>Text:</strong> {{ item.text if item.text else 'UNKNOWN' }} — <em>confidence</em>: {{ '%.2f'|format(item.conf) }}</li>
+        {% endfor %}
+      </ul>
+
+      <a class="btn" href="{{ url_for('index') }}">Back</a>
+    </div>
+  </body>
+</html>

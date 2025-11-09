@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vehicle Plate Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Vehicle Number Plate Detection (YOLO + OCR)</h1>
+
+      <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+        <label for="image">Upload an image:</label>
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit">Detect</button>
+      </form>
+
+      <div class="or">OR</div>
+
+      <a class="btn" href="{{ url_for('camera') }}">Open Webcam Demo</a>
+
+      {% if camera %}
+      <h3>Webcam (Press Ctrl+C in terminal to stop)</h3>
+      <img src="{{ url_for('video_feed') }}" width="720" />
+      {% endif %}
+
+      <footer>
+        <small>Make sure `best.pt` (your YOLO weights) exists in the project root. Install system tesseract for OCR.</small>
+      </footer>
+    </div>
+  </body>
+</html>
